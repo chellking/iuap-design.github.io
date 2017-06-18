@@ -10,18 +10,18 @@
 	"theme":"node_modules/gitbook-plugin-iuap-design/theme/",
 	"plugins":[
 		"anchor-navigation",
-		"expandable-chapters",
+		"-expandable-chapters",
 		"-search",
 		"-livereload",
 		"-fontsettings",
 		"-sharing",
-		"highlight",
+		"-search-pro",
 		"iuap-design"
 	],
 	"pluginsConfig": {
 		"iuap-design": {
-			"title": "CSS 组件",
-			"desc": "包含30+个CSS组件，助力快速产出易用美观的界面"
+			"title": "组件",
+			"desc": "提供丰富的组件，助力快速产出易用美观的界面"
 		}
 	}
 }

@@ -3,11 +3,11 @@
 cdir=`pwd`
 
 prodName=(
-  "iuap-design"
-  "kero"
-  "datetimepicker"
-  "tree"
-  "grid"
+    "neoui"
+    "kero"
+    "neoui-datetimepicker"
+    "neoui-tree"
+    "neoui-grid"
 )
 
 # 代码下载

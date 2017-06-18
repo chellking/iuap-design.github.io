@@ -107,11 +107,24 @@ body {
 }
 
 .demo-drawer-nav-brand {
+    position:relative;
     display: block;
-    padding-left: 45px;
+    width:100%;
+    height:100%;
     font-size: 18px;
     font-weight: bold;
     color: #FFF;
+}
+
+.demo-drawer-nav-brand img{
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:10px;
+    display: block;
+    text-align: center;
+    width:50%;
+    /*width:65%;*/
+
 }
 
 a.demo-drawer-nav-brand:focus, a.demo-drawer-nav-brand:hover {
@@ -234,8 +247,9 @@ a.demo-drawer-nav-brand:focus, a.demo-drawer-nav-brand:hover {
 }
 
 #menubutton {
-    height: 64px;
-    line-height: 64px;
+    /*height: 64px;*/
+     height: 50px;
+    line-height: 50px;
     position: absolute;
     left: 5px;
     font-size: 20px;
@@ -247,12 +261,14 @@ a.demo-drawer-nav-brand:focus, a.demo-drawer-nav-brand:hover {
  }
 
 .u-tabs__tab-bar {
-    height: 64px;
+    /*height: 64px;*/
+    height: 50px;
 }
 
 .u-tabs__tab {
-    height: 64px;
-    line-height: 64px;
+    /*height: 64px;*/
+    height: 50px;
+    line-height: 50px;
 }
 
 .u-tabs_header {
@@ -264,10 +280,12 @@ a.demo-drawer-nav-brand:focus, a.demo-drawer-nav-brand:hover {
     font-size: 18px;
     border-bottom: none;
 }
-
-.u-navlayout-fixed-drawer > .u-navlayout-content {
-    margin-left: 240px;
+@media screen and (min-width: 1024px){
+    .u-navlayout-fixed-drawer > .u-navlayout-content {
+        margin-left: 240px;
+    }
 }
+
 // 内容滚动条
 .u-navlayout-content.ov-hide {
     overflow: hidden !important;
@@ -279,7 +297,8 @@ a.demo-drawer-nav-brand:focus, a.demo-drawer-nav-brand:hover {
 }
 
 .demo-drawer-nav-brand .title-primary {
-    margin-top: 10px;
+    // margin-top: 10px;
+    margin-top: 16px;
     display: block;
 }
 
@@ -346,4 +365,29 @@ a.demo-drawer-nav-brand:focus, a.demo-drawer-nav-brand:hover {
         -ms-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
     }
+}
+
+// 重写样式
+.u-widget-title {
+    border-left: 4px solid red; 
+}
+
+@media screen and (max-width: 480px) {
+    .u-tabs__tab {
+        padding: 0px 5px 0px 5px;
+    }
+}
+
+
+.u-navlayout-drawer .u-nav .u-nav-link-open + .u-nav-sub {
+    max-height: 1200px;
+}
+
+.u-navlayout-drawer .u-nav .u-nav-sub .u-nav-link {
+    padding-left: 54px;
+}
+
+
+.u-navlayout-header {
+    min-height: 50px;
 }

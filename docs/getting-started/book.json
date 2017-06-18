@@ -10,25 +10,18 @@
 	"theme":"node_modules/gitbook-plugin-iuap-design/theme/",
 	"plugins":[
 		"anchor-navigation",
-		"expandable-chapters",
+		"-expandable-chapters",
 		"-search",
 		"-livereload",
 		"-fontsettings",
 		"-sharing",
+		"-search-pro",
 		"iuap-design"
 	],
 	"pluginsConfig": {
 		"iuap-design": {
 			"title": "开始使用",
 			"desc": "包含框架的基础开发、项目开发、前端架构等内容"
-		},
-		"fontsettings": {
-  		"theme": "sepia",
-  		"family": "serif",
-  		"size": 1
-    },
-		"disqus": {
-      "shortName": "gitbookuse"
-    }
+		}
 	}
 }

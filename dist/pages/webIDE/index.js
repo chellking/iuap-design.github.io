@@ -10,6 +10,7 @@ var viewModel = {
 	menuDT : new u.DataTable({
 		meta:{
 			name:{},
+			url:{},
 			sub:{type:'child',meta:{
 				name:{},
 				url:{},
@@ -48,6 +49,22 @@ var viewModel = {
 			var tab = document.getElementById("codeTab")['u.Tabs'];
 			tab.show('tab-panel-4');
 		}
+	},
+	download: function(){
+
+		//将对应的css、js、html代码传给后端，并将后端返回的zip地址进行下载
+		$.ajax({
+				type:'post',
+				url:'/downloadDemo',
+				data:{cssCode:cssEditor.getValue(),jsCode:scriptEditor.getValue(),htmlCode:htmlEditor.getValue()},
+				success:function(data){
+					console.log('----'+data+'new Date()=='+new Date());
+					setTimeout(function(){
+						location.href = "../../"+data+'?tmp='+Date.parse(new Date());
+						}(),2000);
+				}
+
+			})
 	},
 	switchToDt: function() {
 		var hasDt = viewModel.currentRow.getValue('hasDt') || false;
@@ -112,8 +129,14 @@ var routerFunc = function(row, subRow, ssRow, url){
 				viewModel.title(ssRow.getValue('name'));
 				viewModel.currentRow = ssRow;
 			}else{
-				viewModel.title(subRow.getValue('name'));
-				viewModel.currentRow = subRow;
+				if(subRow){
+					viewModel.title(subRow.getValue('name'));
+					viewModel.currentRow = subRow;
+				}else{
+					viewModel.title(row.getValue('name'));
+					viewModel.currentRow = row;
+				}
+
 			}
 			viewModel.currentUrl = url;
 			$.ajax({
@@ -134,7 +157,8 @@ var routerFunc = function(row, subRow, ssRow, url){
 
 var resizeEditor = function(){
 	var _bodyHeight = document.body.offsetHeight;
-	var editorHeight = _bodyHeight - 64 - 49;
+	var editorHeight = _bodyHeight - 44;
+	// var editorHeight = _bodyHeight - 64 - 49;
 	// $('.u-navlayout-container').css('height',_bodyHeight - 61);
 	$('#tab-panel-1').css('height',editorHeight);
 	$('#tab-panel-2').css('height',editorHeight);
@@ -191,6 +215,14 @@ $(function(){
 							router.on(url, routerFunc(row, subRow,null, url));
 						}
 				}
+				//如果没有子类，获取父类的url并注册路由
+				if(subRows.length===0){
+					var parurl = row.getValue('url');
+					if(parurl){
+						router.on(parurl, routerFunc(row, null,null, parurl));
+					}
+
+				}
 			}
 			router.init();
 			if(location.href.indexOf('#') == -1) {
@@ -200,4 +232,20 @@ $(function(){
 		}
 	})
 
+})
+
+
+$('.u-tabs__tab').each(function () {
+	$(this).bind('click', function () {
+		console.log(111);
+		if($(this).attr('href') !== '#tab-panel-4') {
+			$('#viewRun').show();
+		} else {
+			$('#viewRun').hide();
+		}
+	})
+});
+
+$('#viewRun').bind('click', function () {
+	$(this).hide();
 })

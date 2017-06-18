@@ -1,25 +1,32 @@
-# gitbook-plugin-iuap-design
+# 组件
 
-## 说明
+##大体介绍
+NeoUI把一些常见的网页组件拆分成不同的部分，进行类似 Web Components 的封装，包括分页、下拉菜单、进度条、弹出框等更多功能。
+另外，还为大家精心制作了实用方便的样式板，可以在 [WebIDE](http://design.yyuap.com/dist/pages/webIDE/index.html#/demos/ui/dialog/message) 中找到你想要的效果，并且可以直接copy代码，所见即所得，非常贴心方便。
 
-gitbook-plugin-iuap-design是基于gitbook的扩展功能插件。
+##具体使用
 
-## 功能介绍
+###下载文件
+登录[官网首页](http://design.yyuap.com/)右下角，有个“下载体验”点击进行下载
 
-- 支持左侧目录展开
-- 引入 `iuap-desigin` 相关资源时，可同时将生成的 `html` 完美融入 `iuap-design` 官网。
+下载之后，根目录会有css、js、fonts三个文件夹。后面引入的文件可以从这里获取。
 
-## 使用
+###引入文件
 
-```
-npm install gitbook-plugin-iuap-design --save-dev
-```
+1、 在header标签内引入u.css
 
-`gitbook` 的 `book.json` 配置示例
+	<link rel="stylesheet" type="text/css" href="yourPath/css/u.css">
+也可以通过cdn进行加载
 
-```
-"language":"zh-hans",
-"plugins":[
-  "iuap-design"
-],
-```
+	<link rel="stylesheet" type="text/css" href="//design.yyuap.com/static/uui/latest/css/u.css">
+
+2、引入u.js文件
+
+	<script src="yourPath/js/u.js"></script>
+也可以通过cdn进行加载
+
+	<script src="//design.yyuap.com/static/uui/latest/js/u.js"></script>
+
+###编写代码
+
+引入相关文件之后，参照各个控件文档，编写代码，进行调试。

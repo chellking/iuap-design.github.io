@@ -2,10 +2,10 @@
 
 数据模型(dataTabe)作为MVVM架构中Model层的增强。主要功能有：
 
-+ 以行、列的形式对数据做存储，并对外暴露一批增删改查的API，方便开发者对页面数据的处理，而且所有开发者之间做到统一，减少出错概率。
++ 以行、列的形式，通过json对象对数据做存储，并对外暴露一批增删改查的API，方便开发者对页面数据的处理，而且所有开发者之间做到统一，减少出错概率。
 + 数据增加状态标识新增或修改，方便开发者使用。
-+ 具有分页缓存能力，可在前台处理分页(非必要情况下，不推荐前台分页)。
-+ 具有事件触发器，把数据变化触发出去，供开发者监听使用。
++ 具有分页缓存能力，可在前端处理分页(非必要情况下，不推荐前端分页)。
++ 提供事件监听u.on(element, eventName,child,listener)，把数据变化触发出去，供开发者监听使用。
 
 
 ## 模型定义
@@ -20,9 +20,17 @@
 		})
 
 
-meta中是模型的字段信息，字段名对应的对象为字段的属性定义。没有字段属性时，可以为空对象。
+meta中是模型的字段信息，字段名对应的对象为字段的属性定义。没有字段属性时，可以为空对象。例如：
 
-字段的属性值在控件模型中被使用到，主要用于控制表单输入、字段显示格式等业务特性。
+		var dataTable = new u.DataTable({
+			meta:{
+				id:{},
+				name:{}
+			}
+		})
+上面代码定义了一个名字为dataTable的数据模型，它有2个字段分别为id和name。下面会以这个dataTable为例进行一些方法的说明。
+
+字段的属性值在控件模型中被使用到，主要用于控制表单输入、字段显示格式等业务特性。具体属性值请参考[基础设置文档](./dataTableUse.html)
 
 
 
@@ -42,22 +50,24 @@ meta中是模型的字段信息，字段名对应的对象为字段的属性定�
 
 ### 新增数据行并赋值
 
-	var row = dataTable.createEmptyRow();
-	row.setValue('id','003')
+	var row = dataTable.createEmptyRow();//创建一个空行row
+	row.setValue('id','003');//对空行的id字段赋值
 
 新增的数据在dataTable中表现为新增一个`Row`对象。调用`setValue`对其中字段赋值。
 
 ### 修改已存在的行中数据
 
-	var row = dataTable.getRow(index);
+	var row = dataTable.getRow(index);//index指第几行，从0行开始计算。
 	row.setValue('name','jerry');
+
+修改已存在的行数据需要先获取指定行`row`，在调用`row`的setValue方法。
 
 
 ## 数据的删除
 
 ### 删除某一行数据
 
-	dataTable.removeRow(index);
+	dataTable.removeRow(index);//index指第几行，从0行开始计算。
 
 ### 删除所有行数据
 
@@ -70,7 +80,7 @@ meta中是模型的字段信息，字段名对应的对象为字段的属性定�
 
 	var json = dataTable.getSimpleData();
 
-获取到的json数据格式，与载入时的数据格式一致。一般是在提交数据时，调用此方法，把数据获取到后提交给后端。
+获取到的json数据格式，与载入时的数据格式一致。一般是在提交数据时，调用此方法，获取数据后提交给后端。
 在调用`getSimpleData`方法时可传递参数`type`来决定获取的数据类型。
 
 	var json = dataTable.getSimpleData({type:'select'});
